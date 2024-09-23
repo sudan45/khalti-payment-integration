@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .transaction {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Transaction Details</h1>
+        {% if order.order_status == 3 %}
+        <div class="transaction alert alert-success">
+            <h2>Transaction Successful</h2>
+            <p>Khalti Transaction ID: <strong>{{order.khalti_txn_id}}</strong></p>
+            <p>Order Transaction ID: <strong>{{order.order_id}}</strong></p>
+            <p>Amount: <strong>Rs. {{order.total_price }}</strong></p>
+            <p>Date: <strong>{{order.created_at}}</strong></p>
+        </div>
+        {% endif %}
+
+        {% if order.order_status == 4 %}
+        <div class="transaction alert alert-danger">
+            <h2>Transaction Failed</h2>
+            <p>Order Transaction ID: <strong>{{order.order_id}}</strong></p>
+            <p>Reason: <strong>Failure</strong></p>
+            <p>Date: <strong>{{order.created_at}}</strong></p>
+        </div>
+        {% endif %}
+
+        {% if order.order_status == 2 %}
+        <div class="transaction alert alert-warning">
+            <h2>Transaction Pending</h2>
+            <p>Transaction ID: <strong>555555555</strong></p>
+            <p>Amount: <strong>$250.00</strong></p>
+            <p>Date: <strong>September 22, 2024</strong></p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
